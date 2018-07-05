@@ -13,11 +13,11 @@ Invoke-Command -ComputerName S1,Auth -ScriptBlock {new-item C:\Cert2 -ItemType D
 
 #Need the DSC certificate's public key...
 
-#Export-PFXCertificate is being cranky... can export it through GUI
+#Export-PFXCertificate no longer does just the public key, use export-certificate!
 invoke-command -ComputerName S1 -ScriptBlock {Get-ChildItem Cert:\LocalMachine\My | `
     where-object {($_.EnhancedKeyUsageList -like "*Document Encryption*") -and `
         ($_.Subject -like "CN=S1.Company.pri")} | `
-    Export-PfxCertificate -filePath "C:\Cert2\S1.cer"}
+    Export-Certificate -filePath "C:\Cert2\S1.cer"}
 
 #Copy public key to authoring box
 Copy-Item '\\s1\C$\Cert2\*' 'C:\Cert2' -force
@@ -29,8 +29,8 @@ notepad C:\DSC\Configs\S1.mof
 
 #LCM needs the certificate thumbprint in the CertificateID 
 Enter-PSSession s1
-Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -like "CN=S1.Company.pri"} | `
-    Select-Object Thumbprint
+Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -like "CN=S1.Company.pri"} | Select-Object Thumbprint
+Exit-PSSession
 
 code .\S1_LCMConfig.ps1
 Set-DscLocalConfigurationManager -ComputerName S1 -Path C:\DSC\LCM -Verbose
