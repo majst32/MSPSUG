@@ -1,4 +1,4 @@
-﻿cd C:\Github\Live360\PKIDSC\Code
+﻿cd C:\Github\MSPSUG\Code
 
 code .\PKIDeploy.ps1
 code .\PKIDeploy.psd1
@@ -9,7 +9,7 @@ code .\IssueIssuing.ps1
 
 
 #Create folders to hold the cert public key
-Invoke-Command -ComputerName S1,WIN-CC3ILGK5OR6 -ScriptBlock {new-item C:\Cert2 -ItemType Directory}
+Invoke-Command -ComputerName S1,Auth -ScriptBlock {new-item C:\Cert2 -ItemType Directory}
 
 #Need the DSC certificate's public key...
 
