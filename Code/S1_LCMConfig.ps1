@@ -4,7 +4,7 @@ Configuration Push {
     Node S1 {
         
     Settings {
-        CertificateID = '4DBA04DB81BA0137D200943BA60261FE4EC29225'
+        CertificateID = '6E2E9FF8E62EF38C967182330437FAA784E7B6E9'
         RefreshMode = 'Push'
         ActionAfterReboot = 'ContinueConfiguration'
         }

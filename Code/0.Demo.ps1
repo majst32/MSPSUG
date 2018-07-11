@@ -37,3 +37,10 @@ Set-DscLocalConfigurationManager -ComputerName S1 -Path C:\DSC\LCM -Verbose
 
 #And.... run the config
 Start-DscConfiguration -ComputerName S1 -Path C:\DSC\Configs -Verbose -wait
+
+#New Fun Stuff!
+find-module ADCSTemplateForPSEncryption
+code "C:\Program Files\WindowsPowerShell\Modules\ADCSTemplateForPSEncryption\1.0.0\ADCSTemplateForPSEncryption.psm1"
+#Article and Youtube video too!
+#https://blogs.technet.microsoft.com/ashleymcglone/2017/08/29/function-to-create-certificate-template-in-active-directory-certificate-services-for-powershell-dsc-and-cms-encryption/
+#https://www.youtube.com/watch?v=1qWF44Plbrk
